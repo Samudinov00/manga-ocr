@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(py -3.11 --version)",
+      "Bash(py --list)",
+      "Bash(py -3.12 -m venv venv)",
+      "Bash(venv/Scripts/pip install:*)",
+      "Bash(venv/Scripts/python -c \"import urllib3; print\\(urllib3.__version__, urllib3.__file__\\)\")",
+      "Bash(venv/Scripts/python -c \":*)",
+      "Bash(venv/Scripts/python -c \"import requests; print\\(''requests ok'', requests.__version__\\)\")",
+      "Bash(venv/Scripts/python -c \"import pkg_resources, torch; print\\(''pkg_resources ok''\\); print\\(''torch:'', torch.__version__\\)\")",
+      "Bash(venv/Scripts/python -c \"import torch; print\\(torch.__version__\\)\")",
+      "Bash(venv/Scripts/pip show:*)",
+      "Bash(echo \"PYTHONPATH=$PYTHONPATH\")",
+      "Bash(venv/Scripts/python launch.py)",
+      "Bash(venv/Scripts/python -c \"import backports.zstd; print\\(''ok''\\)\")",
+      "Bash(venv/Scripts/python -c \"import torch; print\\(''CUDA available:'', torch.cuda.is_available\\(\\)\\); print\\(''GPU:'', torch.cuda.get_device_name\\(0\\) if torch.cuda.is_available\\(\\) else ''N/A''\\)\")",
+      "Bash(venv/Scripts/python -c \"import torch; print\\(torch.__version__\\); print\\(''CUDA:'', torch.cuda.is_available\\(\\)\\)\")"
+    ]
+  }
+}
