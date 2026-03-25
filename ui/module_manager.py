@@ -72,6 +72,8 @@ class ModuleThread(QThread):
             self.terminate()
         self.imgtrans_proj = proj
         self.finished_counter = 0
+        if self.translator is not None:
+            self.translator.proj_dir = proj.directory
         self.pipeline_pagekey_queue.clear()
 
     def run(self):

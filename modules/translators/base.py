@@ -71,6 +71,8 @@ class BaseTranslator(BaseModule):
 
     _postprocess_hooks = OrderedDict()
     _preprocess_hooks = OrderedDict()
+
+    proj_dir: str = None  # set by module_manager before translation
     
     def __init__(self,
                  lang_source: str, 
@@ -197,6 +199,13 @@ class BaseTranslator(BaseModule):
             _translations = self.translate(text_list)
             for ii, idx in enumerate(non_empty_ids):
                 translations[idx] = _translations[ii]
+
+        if self.proj_dir and text_list:
+            import os
+            export_path = os.path.join(self.proj_dir, 'translation_export.txt')
+            with open(export_path, 'a', encoding='utf-8') as f:
+                for src, tgt in zip(text_list, [translations[i] for i in non_empty_ids]):
+                    f.write(f'[original]\n{src.strip()}\n[translated]\n{tgt.strip()}\n---\n')
 
         for callback_name, callback in self._postprocess_hooks.items():
             callback(translations = translations, textblocks = textblk_lst, translator = self)
